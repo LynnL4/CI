@@ -24,26 +24,26 @@ install:
 script: 
   -|
   if [ "$BOARD" == "Seeeduino:samd:zero" ]; then
-  echo "hello"
-  arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
-  COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
-  echo $COREVER
-  ls . -lh
-  mkdir -p build && cd  build
-  cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=seeeduino_m0 -DARDUINO_VERIANT=arduino_zero
-  make
+  - echo "hello"
+  - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
+  - COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
+  - echo $COREVER
+  - ls . -lh
+  - mkdir -p build && cd  build
+  - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=seeeduino_m0 -DARDUINO_VERIANT=arduino_zero
+  - make
   fi
 
   -|
   if [ "$BOARD" == "Seeeduino:samd:seeed_grove_ui_wireless" ]; then
-  echo "hello"
-  arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
-  COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
-  echo $COREVER
-  ls . -lh
-  mkdir -p build && cd  build
-  cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=grove_ui_m4 -DARDUINO_VERIANT=grove_ui_wireless
-  make
+  - echo "hello"
+  - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
+  - COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
+  - echo $COREVER
+  - ls . -lh
+  - mkdir -p build && cd  build
+  - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=grove_ui_m4 -DARDUINO_VERIANT=grove_ui_wireless
+  - make
   fi
 
 notifications:
