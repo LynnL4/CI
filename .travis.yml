@@ -28,23 +28,14 @@ script:
   - echo $COREVER
   - ls . -lh
   - mkdir -p build && cd  build
-  if [ "$BOARD" == "Seeeduino:samd:zero" ]; then
-  - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=seeeduino_m0 -DARDUINO_VERIANT=arduino_zero
-  elif 
-  - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=grove_ui_m4 -DARDUINO_VERIANT=grove_ui_wireless
-  fi
+
+    if [ "$BOARD" == "Seeeduino:samd:zero" ]; then
+      - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=seeeduino_m0 -DARDUINO_VERIANT=arduino_zero
+    elif [ "$BOARD" == "Seeeduino:samd:seeed_grove_ui_wireless" ]; then
+      - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=grove_ui_m4 -DARDUINO_VERIANT=grove_ui_wireless
+    fi
   - make
-
-notifications:
-  webhooks:
-    urls:
-      - https://www.travisbuddy.com/
-    on_success: never
-    on_failure: always
-
-  fi
-  - make 
-
+  
 notifications:
   webhooks:
     urls:
