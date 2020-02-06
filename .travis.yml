@@ -22,7 +22,7 @@ install:
   - mkdir -p $HOME/Arduino/libraries
 
 script: 
-  -|
+
   if [ "$BOARD" == "Seeeduino:samd:zero" ]; then
   - echo "hello"
   - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
@@ -34,7 +34,6 @@ script:
   - make
   fi
 
-  -|
   if [ "$BOARD" == "Seeeduino:samd:seeed_grove_ui_wireless" ]; then
   - echo "hello"
   - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
