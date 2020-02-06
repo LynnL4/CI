@@ -22,28 +22,28 @@ install:
   - mkdir -p $HOME/Arduino/libraries
 
 script: 
-
+  - echo "CI Test"
+  - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
+  - COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
+  - echo $COREVER
+  - ls . -lh
+  - mkdir -p build && cd  build
   if [ "$BOARD" == "Seeeduino:samd:zero" ]; then
-  - echo "hello"
-  - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
-  - COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
-  - echo $COREVER
-  - ls . -lh
-  - mkdir -p build && cd  build
   - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=seeeduino_m0 -DARDUINO_VERIANT=arduino_zero
-  - make
-  fi
-
-  if [ "$BOARD" == "Seeeduino:samd:seeed_grove_ui_wireless" ]; then
-  - echo "hello"
-  - arduino-cli board listall --additional-urls  https://raw.githubusercontent.com/Seeed-Studio/Seeed_Platform/master/package_seeeduino_boards_index.json
-  - COREVER=$(arduino-cli core list | grep Seeeduino | awk '{print $2}')
-  - echo $COREVER
-  - ls . -lh
-  - mkdir -p build && cd  build
+  elif 
   - cmake ../ -DARDUINO_CORE_PATH=$HOME/.arduino15/packages/Seeeduino/hardware/samd/$COREVER -DTOOLCHAIN=$HOME/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin -DBOARD=grove_ui_m4 -DARDUINO_VERIANT=grove_ui_wireless
-  - make
   fi
+  - make
+
+notifications:
+  webhooks:
+    urls:
+      - https://www.travisbuddy.com/
+    on_success: never
+    on_failure: always
+
+  fi
+  - make 
 
 notifications:
   webhooks:
