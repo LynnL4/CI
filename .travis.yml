@@ -12,8 +12,9 @@ before_install:
   - sudo apt-get install --reinstall python3-pip
   - python3 -m pip install
   - git clone https://github.com/Seeed-Studio/ardupy-aip
-  - cd ardupy-aip
   - pip3 install pip
+  - cd ardupy-aip
+  - ls
 install:
   - pip3 install -U -e .
   - aip
