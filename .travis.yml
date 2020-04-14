@@ -10,8 +10,10 @@ matrix:
 
 before_install:
   - sudo apt-get install --reinstall python3-pip
+  - python3 -m pip instal
   - git clone https://github.com/Seeed-Studio/ardupy-aip
   - cd ardupy-aip
+  - pip3 install pip
 install:
   - pip3 install -U -e .
   - aip
