@@ -9,12 +9,8 @@ matrix:
         - BOARD="Seeeduino:samd:seeed_wio_terminal"
 
 before_install:
-  - sudo apt-get install --reinstall python3-pip
+  - sudo apt-get install python3-setuptools
   - python3 -m pip install
-  - wget https://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz
-  - tar zxvf setuptools-0.6c11.tar.gz
-  - cd setuptools-0.6c11
-  - python3 setup.py install
   - cd ~
   - git clone https://github.com/Seeed-Studio/ardupy-aip
   - pip3 install pip
