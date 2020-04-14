@@ -9,11 +9,12 @@ matrix:
         - BOARD="Seeeduino:samd:seeed_wio_terminal"
 
 before_install:
+  - sudo apt-get install --reinstall python3-pip
   - git clone https://github.com/Seeed-Studio/ardupy-aip
   - cd ardupy-aip
 install:
   - pip3 install -U -e .
-  - aip help
+  - aip
 
 script: 
   - echo "CI Test"
